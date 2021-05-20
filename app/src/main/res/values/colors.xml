@@ -6,10 +6,14 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="fab">#E91E63</color>
+    <color name="faber">#F54E1A</color>
     <color name="bg">#75E6DA</color>
     <color name="nav">#189AB4</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="app_color">#189AB4</color>
+    <color name="app_color">#FFFFFFFF</color>
     <color name="notification">#5B6D5B</color>
+
+    <color name="sp_bg">#79A800</color>
+
 </resources>

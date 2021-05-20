@@ -1,15 +1,28 @@
 package com.ateam.herbacrop.ui.fragment
 
+import android.graphics.drawable.ClipDrawable.HORIZONTAL
+import android.icu.lang.UCharacter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.HorizontalScrollView
+import android.widget.LinearLayout.HORIZONTAL
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.ateam.herbacrop.R
 import com.ateam.herbacrop.databinding.FragmentHomeBinding
+import com.ateam.herbacrop.ui.RecylerBerandaAdapter
+import com.ateam.herbacrop.ui.RecylerTrendingAdapter
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
+
+    private var layoutManager: RecyclerView.LayoutManager? = null
+    private var adapter: RecyclerView.Adapter<RecylerBerandaAdapter.ViewHolder>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,9 +34,16 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (activity!=null){
-            binding.text.text = "HELLOO HOME"
+        binding.rvBeranda.apply {
+            layoutManager = LinearLayoutManager(activity)
+            adapter = RecylerBerandaAdapter()
+        }
+
+
+        binding.rvTrending.apply {
+            val layoutManager = LinearLayoutManager(activity)
+            layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+            adapter  = RecylerTrendingAdapter()
         }
     }
-
 }
