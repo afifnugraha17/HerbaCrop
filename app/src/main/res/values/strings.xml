@@ -10,4 +10,11 @@
     <string name="nav_search_title">Search</string>
     <string name="nav_favorite">Favorites</string>
     <string name="nav_library_title">Libraries</string>
+    <string name="title">Title</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="berita">Berita</string>
+    <string name="trending">Trending</string>
+    <string name="masukan_nama_penyakit">masukan nama penyakit</string>
+    <string name="waiting_search">Waiting to search</string>
+    <string name="cari_tanaman">cari tanaman</string>
 </resources>
