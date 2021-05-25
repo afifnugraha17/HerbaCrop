@@ -1,6 +1,5 @@
-package com.ateam.herbacrop.ui
+package com.ateam.herbacrop.ui.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,14 +34,14 @@ class RecylerLibraryAdapter :RecyclerView.Adapter<RecylerLibraryAdapter.ViewHold
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): RecylerLibraryAdapter.ViewHolder {
+    ): ViewHolder {
        val v =LayoutInflater.from(parent.context)
            .inflate(R.layout.library_item,parent,false)
 
         return ViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: RecylerLibraryAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.title.text  =title[position]
         holder.desc.text = desc[position]
     }

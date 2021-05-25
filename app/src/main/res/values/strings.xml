@@ -17,4 +17,6 @@
     <string name="masukan_nama_penyakit">masukan nama penyakit</string>
     <string name="waiting_search">Waiting to search</string>
     <string name="cari_tanaman">cari tanaman</string>
+    <string name="capture">Capture</string>
+    <string name="choose">Choose</string>
 </resources>
