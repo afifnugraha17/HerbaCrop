@@ -1,9 +1,11 @@
 package com.ateam.herbacrop.ui.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.ateam.herbacrop.R
+import com.ateam.herbacrop.camera.CameraScanActivity
 import com.ateam.herbacrop.databinding.ActivityMainBinding
 import com.ateam.herbacrop.ui.fragment.*
 
@@ -30,6 +32,10 @@ class HomeActivity : AppCompatActivity() {
                     R.id.nav_favorite -> replaceFragment(FavoriteFragment())
                 }
                 true
+            }
+            fab.setOnClickListener {
+                val intent = Intent(this@HomeActivity, CameraScanActivity::class.java)
+                startActivity(intent)
             }
         }
     }

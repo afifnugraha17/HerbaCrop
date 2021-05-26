@@ -3,6 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.ateam.herbacrop">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,14 +17,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HerbaCrop"
         tools:ignore="AllowBackup">
-        <activity android:name=".ui.activity.SplashActivity" android:theme="@style/Theme.HerbaCrop.NoActionBar">
+        <activity android:name=".ui.activity.DetailActivity"></activity>
+        <activity android:name=".camera.CameraScanActivity" />
+        <activity
+            android:name=".ui.activity.SplashActivity"
+            android:theme="@style/Theme.HerbaCrop.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.HomeActivity"/>
+        <activity android:name=".ui.activity.HomeActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

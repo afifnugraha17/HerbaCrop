@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ateam.herbacrop.databinding.FragmentLibraryBinding
-import com.ateam.herbacrop.ui.RecylerLibraryAdapter
+import com.ateam.herbacrop.ui.adapter.RecylerLibraryAdapter
 
 class LibraryFragment : Fragment() {
     private lateinit var binding: FragmentLibraryBinding
