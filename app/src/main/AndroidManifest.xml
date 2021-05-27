@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HerbaCrop"
         tools:ignore="AllowBackup">
-        <activity android:name=".ui.activity.DetailActivity"></activity>
+        <activity android:name=".ui.activity.onboarding.screens.OnBoardingActivity"></activity>
+        <activity android:name=".ui.activity.DetailActivity" />
         <activity android:name=".camera.CameraScanActivity" />
         <activity
             android:name=".ui.activity.SplashActivity"

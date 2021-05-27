@@ -32,7 +32,6 @@ class HomeFragment : Fragment() {
             adapter = RecylerBerandaAdapter()
         }
 
-
         binding.rvTrending.apply {
             val layoutManager = LinearLayoutManager(activity)
             layoutManager.orientation = LinearLayoutManager.HORIZONTAL
