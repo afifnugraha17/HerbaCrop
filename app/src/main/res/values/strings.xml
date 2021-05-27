@@ -19,4 +19,11 @@
     <string name="cari_tanaman">cari tanaman</string>
     <string name="capture">Capture</string>
     <string name="choose">Choose</string>
+    <string name="easy">Easy</string>
+    <string name="description_Boarding">“Memudahkan pencarian tanaman obat serta  mengetahui manfaat dan cara pengolahannya.“</string>
+    <string name="lanjutkan">Get started</string>
+    <string name="scanner">Scanner</string>
+    <string name="ml">Machine Learning</string>
+    <string name="description_onboarding2">“Menggunakan fitur camera untuk mengambil gambar tanaman yang akan dicari informasinya”</string>
+    <string name="description_onboarding3">“Menggunakan Machine Learning untuk algoritma mengolah data sehingga hasil prediksi yang di hasilkan lebih akurat”</string>
 </resources>

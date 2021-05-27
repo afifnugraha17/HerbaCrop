@@ -1,15 +1,12 @@
-package com.ateam.herbacrop
-ding.inflate(layoutInflater)
-setContentView(splashBinding.root)
-
-Handler(mainLooper).postDelayed({
-    startActivity(Intent(this, MainActivity::class.java))
+package com.ateam.herbacrop.ui.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.ateam.herbacrop.R
 import com.ateam.herbacrop.databinding.ActivitySplashBinding
+import com.ateam.herbacrop.ui.activity.onboarding.screens.OnBoardingActivity
 
 class SplashActivity : AppCompatActivity() {
     private val splashTimeOut: Long = 3000L
@@ -18,7 +15,10 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        splashBinding = ActivitySplashBin
+        Handler(mainLooper).postDelayed({
+            startActivity(Intent(this, OnBoardingActivity::class.java))
+        splashBinding = ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(splashBinding.root)
             finish()
         }, splashTimeOut)
     }
