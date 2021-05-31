@@ -1,4 +1,4 @@
-package com.ateam.herbacrop.ui.activity
+package com.ateam.herbacrop.ui.main.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

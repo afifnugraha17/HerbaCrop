@@ -1,4 +1,4 @@
-package com.ateam.herbacrop.ui.activity
+package com.ateam.herbacrop.ui.main.view.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import com.ateam.herbacrop.R
 import com.ateam.herbacrop.camera.CameraScanActivity
 import com.ateam.herbacrop.databinding.ActivityMainBinding
-import com.ateam.herbacrop.ui.fragment.*
+import com.ateam.herbacrop.ui.main.view.fragment.*
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
