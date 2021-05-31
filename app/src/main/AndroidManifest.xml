@@ -17,11 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HerbaCrop"
         tools:ignore="AllowBackup">
-        <activity android:name=".ui.activity.onboarding.screens.OnBoardingActivity"></activity>
-        <activity android:name=".ui.activity.DetailActivity" />
+        <activity android:name="com.ateam.herbacrop.ui.main.view.onboarding.screens.OnBoardingActivity"></activity>
+        <activity android:name="com.ateam.herbacrop.ui.main.view.activity.DetailActivity" />
         <activity android:name=".camera.CameraScanActivity" />
         <activity
-            android:name=".ui.activity.SplashActivity"
+            android:name="com.ateam.herbacrop.ui.main.view.activity.SplashActivity"
             android:theme="@style/Theme.HerbaCrop.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,7 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.HomeActivity" />
+        <activity android:name="com.ateam.herbacrop.ui.main.view.activity.HomeActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

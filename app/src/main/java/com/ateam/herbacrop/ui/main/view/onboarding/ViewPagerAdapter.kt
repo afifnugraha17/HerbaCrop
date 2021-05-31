@@ -1,4 +1,4 @@
-package com.ateam.herbacrop.ui.activity.onboarding
+package com.ateam.herbacrop.ui.main.view.onboarding
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -8,8 +8,6 @@ class ViewPagerAdapter(
     private val items:ArrayList<Fragment>,
     activity: AppCompatActivity
 ):FragmentStateAdapter(activity){
-
-
 
     override fun getItemCount(): Int {
 

@@ -1,4 +1,4 @@
-package com.ateam.herbacrop.ui.adapter
+package com.ateam.herbacrop.ui.main.adapter
 
 import android.view.LayoutInflater
 import android.view.View

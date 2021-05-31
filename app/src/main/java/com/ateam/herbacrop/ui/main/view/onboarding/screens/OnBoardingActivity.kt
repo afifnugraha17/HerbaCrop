@@ -1,4 +1,4 @@
-package com.ateam.herbacrop.ui.activity.onboarding.screens
+package com.ateam.herbacrop.ui.main.view.onboarding.screens
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,8 +6,8 @@ import android.os.Bundle
 import androidx.viewpager2.widget.ViewPager2
 import com.ateam.herbacrop.R
 import com.ateam.herbacrop.databinding.ActivityOnBoardingBinding
-import com.ateam.herbacrop.ui.activity.HomeActivity
-import com.ateam.herbacrop.ui.activity.onboarding.ViewPagerAdapter
+import com.ateam.herbacrop.ui.main.view.activity.HomeActivity
+import com.ateam.herbacrop.ui.main.view.onboarding.ViewPagerAdapter
 
 class OnBoardingActivity : AppCompatActivity() {
     lateinit var viewpager: ViewPager2

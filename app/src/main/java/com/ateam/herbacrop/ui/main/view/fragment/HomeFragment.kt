@@ -1,4 +1,4 @@
-package com.ateam.herbacrop.ui.fragment
+package com.ateam.herbacrop.ui.main.view.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ateam.herbacrop.databinding.FragmentHomeBinding
-import com.ateam.herbacrop.ui.adapter.RecylerBerandaAdapter
-import com.ateam.herbacrop.ui.adapter.RecylerTrendingAdapter
+import com.ateam.herbacrop.ui.main.adapter.RecylerBerandaAdapter
+import com.ateam.herbacrop.ui.main.adapter.RecylerTrendingAdapter
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding

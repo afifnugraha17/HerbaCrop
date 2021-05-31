@@ -1,6 +1,5 @@
-package com.ateam.herbacrop.ui.activity.onboarding.screens
+package com.ateam.herbacrop.ui.main.view.onboarding.screens
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater

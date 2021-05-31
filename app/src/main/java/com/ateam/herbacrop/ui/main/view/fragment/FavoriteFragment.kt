@@ -1,4 +1,4 @@
-package com.ateam.herbacrop.ui.fragment
+package com.ateam.herbacrop.ui.main.view.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ateam.herbacrop.databinding.FragmentFavoriteBinding
-import com.ateam.herbacrop.ui.adapter.RecylerLibraryAdapter
+import com.ateam.herbacrop.ui.main.adapter.RecylerLibraryAdapter
 
 
 class FavoriteFragment : Fragment() {
