@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.view.fragment.SearchFragment">
+    tools:context=".ui.view.fragment.SearchFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -53,12 +53,12 @@
                 android:scaleType="fitCenter"
                 android:focusable="true"
                 android:src="@drawable/ic_all_search"
-                android:tint="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription"
+                app:tint="@color/black" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </RelativeLayout>
 

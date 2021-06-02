@@ -121,6 +121,7 @@ class CameraScanActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("Range")
     private fun getImagePath(uri: Uri, selection: String?): String {
         var path: String? = null
         val cursor = contentResolver.query(uri, null, selection, null, null )

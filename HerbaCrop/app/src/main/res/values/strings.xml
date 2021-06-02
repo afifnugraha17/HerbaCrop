@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">HerbaCrop</string>
+    <string name="splash_content">HerbaCrop Logo</string>
+    <string name="home_nav">Home</string>
+    <string name="scan_nav">Scan Image</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nav_home_title">Home</string>
+    <string name="nav_scan_title">Scan Image</string>
+    <string name="nav_search_title">Search</string>
+    <string name="nav_favorite">Favorites</string>
+    <string name="nav_library_title">Libraries</string>
+    <string name="title">Title</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="berita">Berita</string>
+    <string name="trending">Trending</string>
+    <string name="masukan_nama_penyakit">masukan nama penyakit</string>
+    <string name="waiting_search">Waiting to search</string>
+    <string name="cari_tanaman">cari tanaman</string>
+    <string name="capture">Capture</string>
+    <string name="choose">Choose</string>
+    <string name="easy">Easy</string>
+    <string name="description_Boarding">“Memudahkan pencarian tanaman obat serta  mengetahui manfaat dan cara pengolahannya.“</string>
+    <string name="lanjutkan">Get started</string>
+    <string name="scanner">Scanner</string>
+    <string name="ml">Machine Learning</string>
+    <string name="description_onboarding2">“Menggunakan fitur camera untuk mengambil gambar tanaman yang akan dicari informasinya”</string>
+    <string name="description_onboarding3">“Menggunakan Machine Learning untuk algoritma mengolah data sehingga hasil prediksi yang di hasilkan lebih akurat”</string>
+</resources>
