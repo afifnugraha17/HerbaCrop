@@ -1,54 +1,35 @@
 package com.ateam.herbacrop.ui.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.ateam.herbacrop.R
+import com.ateam.herbacrop.core.domain.model.NewsModel
+import com.ateam.herbacrop.databinding.BerandaItemBinding
+import com.bumptech.glide.Glide
 
 class RecylerBerandaAdapter :RecyclerView.Adapter<RecylerBerandaAdapter.ViewHolder>(){
-    inner class ViewHolder(itemView:View):RecyclerView.ViewHolder(itemView) {
+    private val dataList=  ArrayList<NewsModel>()
 
-        var title: TextView =itemView.findViewById(R.id.title)
-        var desc: TextView =itemView.findViewById(R.id.desc)
-
-        init {
-            itemView.setOnClickListener{
-                    v:View -> val position:Int = absoluteAdapterPosition
-                Toast.makeText(itemView.context,"click ${position +1}",Toast.LENGTH_SHORT).show()
-            }
-        }
+    fun setData(items: List<NewsModel>) {
+        dataList.clear()
+        dataList.addAll(items)
+        notifyDataSetChanged()
     }
 
-    private val title = arrayOf("DBD", "COVID",
-        "kaki Gajah", "Malaria",
-        "TBC", "Sakit mata",
-        "Sakit Hati", "Sakit Ginjal","Darah Suci","Darah Tinggi","Buta Warna","Flu Burung")
 
-    private val desc = arrayOf("Penyakit Berbahaya lorem ipsum...",
-        "Penyakit Berbahaya lorem ipsum...", "Penyakit Berbahaya lorem ipsum...", "Penyakit Berbahaya lorem ipsum...",
-        "Penyakit Berbahaya lorem ipsum...", "Penyakit Berbahaya lorem ipsum...", "Penyakit Berbahaya lorem ipsum...",
-        "Penyakit Berbahaya lorem ipsum...","Penyakit Berbahaya lorem ipsum...","Penyakit Berbahaya lorem ipsum...","Penyakit Berbahaya lorem ipsum...","Penyakit Berbahaya lorem ipsum...","Penyakit Berbahaya lorem ipsum...")
-
+    class ViewHolder(val binding: BerandaItemBinding):RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ViewHolder {
-       val v =LayoutInflater.from(parent.context)
-           .inflate(R.layout.beranda_item,parent,false)
-
-        return ViewHolder(v)
-    }
+    ): ViewHolder = ViewHolder(BerandaItemBinding.inflate(LayoutInflater.from(parent.context),parent,false))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.title.text  =title[position]
-        holder.desc.text = desc[position]
+        val news = dataList[position]
+        holder.binding.title.text = news.title
+        holder.binding.desc.text = news.description
+        Glide.with(holder.binding.root).load(news.image).into(holder.binding.profileImage)
     }
 
-    override fun getItemCount(): Int {
-       return title.size
-    }
+    override fun getItemCount(): Int = dataList.size
 }
