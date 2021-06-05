@@ -53,6 +53,11 @@ class PictureCheckActivity : AppCompatActivity() {
                                 outputFeature.floatArray[4])
 
                 println(resultText)
+
+                val intent = Intent(this, ResultActivity::class.java)
+                intent.putExtra(ResultActivity.EXTRA_USERS, resultText)
+                startActivity(intent)
+
             }catch (e: IOException){
                 Timber.e(e)
             }

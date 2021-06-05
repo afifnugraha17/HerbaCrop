@@ -1,7 +1,9 @@
 package com.ateam.herbacrop.ui.view.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ateam.herbacrop.core.domain.model.PlantModel
 import com.ateam.herbacrop.core.domain.model.TrendingModel
 import com.ateam.herbacrop.databinding.ActivityTrendingBinding
@@ -46,5 +48,22 @@ class TrendingActivity : AppCompatActivity() {
                     trendingAdapter.notifyDataSetChanged()
                 }
             }
+
+        binding.rvTrending.apply {
+            layoutManager = LinearLayoutManager(this@TrendingActivity)
+            setHasFixedSize()
+            adapter = trendingAdapter
+        }
+
+        trendingAdapter.setOnItemClickCallback(object : RecyclerSearchAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: PlantModel) {
+                showSelectedPlant(data)
+            }
+        })
+    }
+    private fun showSelectedPlant(data: PlantModel) {
+        val moveWithDataIntent = Intent(this, DetailActivity::class.java)
+        moveWithDataIntent.putExtra(DetailActivity.EXTRA_USERS, data)
+        startActivity(moveWithDataIntent)
     }
 }

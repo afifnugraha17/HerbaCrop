@@ -11,13 +11,15 @@
 
     <application
         android:allowBackup="true"
+        android:name=".App"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HerbaCrop"
         tools:ignore="AllowBackup">
-        <activity android:name=".camera.PictureCheckActivity"></activity>
+        <activity android:name=".camera.ResultActivity"/>
+        <activity android:name=".camera.PictureCheckActivity" />
         <activity android:name=".ui.view.activity.LibraryListActivity" />
         <activity android:name=".ui.view.activity.TrendingActivity" />
         <activity android:name=".ui.view.activity.NewsDetailActivity" />

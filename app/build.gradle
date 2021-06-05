@@ -59,6 +59,11 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation "androidx.core:core-ktx:1.5.0"
+    //koin
+    implementation 'io.insert-koin:koin-core:3.0.2'
+    implementation 'io.insert-koin:koin-android:3.0.2'
+    implementation 'net.zetetic:android-database-sqlcipher:4.4.0'
+    implementation 'androidx.sqlite:sqlite-ktx:2.1.0'
     //room
     implementation 'androidx.room:room-ktx:2.3.0'
     implementation 'androidx.room:room-runtime:2.3.0'
@@ -66,7 +71,7 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.7.1'
     kapt 'androidx.room:room-compiler:2.3.0'
     //component
-    implementation "androidx.recyclerview:recyclerview:1.2.0"
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
     implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
     //AVLoading
     implementation 'com.wang.avi:library:2.1.3'

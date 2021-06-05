@@ -3,79 +3,110 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
+    android:layout_height="wrap_content"
+    tools:ignore="ExtraText">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="20dp"
-        android:layout_marginTop="12dp"
-        android:focusable="true"
-        android:foreground="?selectableItemBackground"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_gravity="center"
+        android:id="@+id/cardview"
+        android:layout_width="0dp"
+        android:layout_height="170dp"
+        android:layout_margin="20dp"
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="@color/app_color"
         app:cardCornerRadius="20dp"
+        app:cardElevation="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image_library"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:paddingBottom="10dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/jarak"
-            app:civ_border_color="#531414"
-            app:civ_border_width="1dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_library_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="125dp"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/quicksand_bold"
-            android:shadowColor = "#000"
-            android:shadowDx = "-2"
-            android:shadowDy = "-2"
-            android:shadowRadius = "1"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_favorit"
+                android:padding="5dp"
+                tools:ignore="MissingConstraints">
 
-            android:text="@string/title"
-            android:textSize="18sp"
-            app:layout_constraintStart_toEndOf="@+id/profile_image"
-            app:layout_constraintTop_toTopOf="@+id/profile_image" />
+                <ImageView
+                    android:id="@+id/img_style"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:hapticFeedbackEnabled="true"
+                    android:src="@drawable/ic_stars"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_nama_tumbuhan"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription,MissingConstraints" />
 
-        <TextView
-            android:id="@+id/tv_library_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="125dp"
-            android:layout_marginTop="50dp"
-            android:fontFamily="@font/quicksand"
-            android:text="@string/deskripsi"
-            app:layout_constraintBottom_toBottomOf="@+id/profile_image"
-            app:layout_constraintStart_toEndOf="@+id/profile_image"
-            app:layout_constraintTop_toBottomOf="@+id/title"
-            />
+                <TextView
+                    android:id="@+id/tv_nama_tumbuhan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginBottom="2dp"
+                    android:fontFamily="@font/quicksand_bold"
+                    android:text="@string/nama_tanaman"
+                    android:textColor="@color/app_color"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/img_style"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/img_style"
+                    app:layout_constraintTop_toTopOf="@+id/img_style"
+                    tools:ignore="MissingConstraints" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:layout_marginStart="300dp"
-            android:layout_marginTop="60dp"
-            app:fabCustomSize="28dp"
-            android:clickable="true"
-            android:padding="12dp"
-            app:srcCompat="@drawable/ic_favorite"
-            tools:ignore="ContentDescription"
-            android:focusable="true" />
 
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/image_favorit"
+                android:layout_width="0dp"
+                android:layout_height="130dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                app:layout_constraintVertical_bias="1.0"
+                tools:srcCompat="@tools:sample/avatars"
+                android:contentDescription="@string/image_news" />
+
+            <TextView
+                android:id="@+id/tv_type"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/quicksand"
+                android:text="@string/type_tumbuhan"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/image_favorit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.142"
+                app:layout_constraintStart_toEndOf="@+id/image_favorit"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                app:layout_constraintVertical_bias="0.38" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fb_favorite_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/app_color"
+                android:clickable="true"
+                android:focusable="true"
+                android:textAlignment="center"
+                app:backgroundTint="@color/notification"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.761"
+                app:layout_constraintStart_toEndOf="@+id/tv_type"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_right_arrow"
+                tools:ignore="ContentDescription" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

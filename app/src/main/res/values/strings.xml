@@ -36,4 +36,8 @@
     <string name="manfaat">Manfaat :</string>
     <string name="cara_menanam">Cara Menanam :</string>
     <string name="gambar_terpilih">Gambar terpilih</string>
+    <string name="type_tumbuhan">Type Tumbuhan</string>
+    <string name="team_herbacrop">Team HerbaCrop</string>
+    <string name="nama">Nama</string>
+    <string name="learning_path">Learning Path</string>
 </resources>

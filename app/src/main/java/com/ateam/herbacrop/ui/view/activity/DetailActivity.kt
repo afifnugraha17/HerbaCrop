@@ -2,13 +2,21 @@ package com.ateam.herbacrop.ui.view.activity
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.ateam.herbacrop.core.domain.model.PlantModel
 import com.ateam.herbacrop.databinding.ActivityDetailBinding
+import com.ateam.herbacrop.favorite.FavoriteViewModel
 import com.bumptech.glide.Glide
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
+    private val viewModel : FavoriteViewModel by viewModels()
 
     companion object {
         const val EXTRA_USERS = "extra_users"
@@ -23,6 +31,33 @@ class DetailActivity : AppCompatActivity() {
 
         val data = intent.getParcelableExtra<PlantModel>(EXTRA_USERS) as PlantModel
         BindData(data)
+
+        var isChecked = false
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val count = viewModel.checkFavorite(data.id)
+            Timber.tag("cek").d(count.toString())
+            withContext(Dispatchers.Main){
+                if (count > 0){
+                    binding.toggleButton.isChecked = true
+                    isChecked = true
+                }else{
+                    viewModel.postData(data)
+                    binding.toggleButton.isChecked = false
+                    isChecked = false
+                }
+            }
+        }
+
+        binding.toggleButton.setOnClickListener{
+            isChecked = !isChecked
+            if (isChecked){
+                viewModel.setFavorite(data.id)
+            }else{
+                viewModel.unSetFavorite(data.id)
+            }
+            binding.toggleButton.isChecked = isChecked
+        }
     }
 
     private fun showLoading(state: Boolean) {
