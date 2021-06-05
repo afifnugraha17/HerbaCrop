@@ -44,6 +44,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        mlModelBinding true
     }
 }
 
@@ -60,6 +61,8 @@ dependencies {
     //room
     implementation 'androidx.room:room-ktx:2.3.0'
     implementation 'androidx.room:room-runtime:2.3.0'
+    implementation 'org.tensorflow:tensorflow-lite-metadata:0.1.0-rc1'
+    implementation 'com.jakewharton.timber:timber:4.7.1'
     kapt 'androidx.room:room-compiler:2.3.0'
     //component
     implementation "androidx.recyclerview:recyclerview:1.2.0"
@@ -75,6 +78,7 @@ dependencies {
     //Cloud Firebase
     implementation platform('com.google.firebase:firebase-bom:28.0.1')
     implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-storage-ktx'
     implementation 'com.google.firebase:firebase-firestore-ktx'
     implementation 'com.google.firebase:firebase-firestore:23.0.0'
     //navigation

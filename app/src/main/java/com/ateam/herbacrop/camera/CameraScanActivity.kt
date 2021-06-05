@@ -34,7 +34,6 @@ class CameraScanActivity : AppCompatActivity() {
             val checkSelfPermission = ContextCompat.checkSelfPermission(this,
                 android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
             if (checkSelfPermission != PackageManager.PERMISSION_GRANTED){
-
                 ActivityCompat.requestPermissions(this,
                     arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
             }
@@ -62,6 +61,9 @@ class CameraScanActivity : AppCompatActivity() {
             ScanOperation.operationCapture ->
                 if (resultCode == Activity.RESULT_OK) {
                     val bitmap = data?.extras?.get("data") as Bitmap
+                    val intent = Intent(this,PictureCheckActivity::class.java)
+                    intent.putExtra(PictureCheckActivity.EXTRA_USERS, bitmap)
+                    startActivity(intent)
                 }
             ScanOperation.operationChoose ->
                 if (resultCode == Activity.RESULT_OK) {
@@ -117,7 +119,9 @@ class CameraScanActivity : AppCompatActivity() {
     private fun renderImage(imagePath: String?){
         if (imagePath != null) {
             val bitmap = BitmapFactory.decodeFile(imagePath)
-
+            val intent = Intent(this,PictureCheckActivity::class.java)
+            intent.putExtra(PictureCheckActivity.EXTRA_USERS, bitmap)
+            startActivity(intent)
         }
     }
 
