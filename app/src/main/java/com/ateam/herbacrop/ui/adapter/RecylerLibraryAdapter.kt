@@ -1,52 +1,49 @@
 package com.ateam.herbacrop.ui.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.ateam.herbacrop.R
+import com.ateam.herbacrop.core.domain.model.LibraryModel
+import com.ateam.herbacrop.databinding.LibraryItemBinding
+import com.bumptech.glide.Glide
 
 class RecylerLibraryAdapter :RecyclerView.Adapter<RecylerLibraryAdapter.ViewHolder>(){
-    inner class ViewHolder(itemView:View):RecyclerView.ViewHolder(itemView) {
+    private lateinit var onItemClickCallback: OnItemClickCallback
+    private val list = ArrayList<LibraryModel>()
 
-        var title: TextView =itemView.findViewById(R.id.tv_library_title)
-        var desc: TextView =itemView.findViewById(R.id.tv_library_desc)
-
-        init {
-            itemView.setOnClickListener{
-                    v:View -> val position:Int = absoluteAdapterPosition
-                Toast.makeText(itemView.context,"click ${position +1}",Toast.LENGTH_SHORT).show()
-            }
-        }
+    fun setData(items: List<LibraryModel>) {
+        list.clear()
+        list.addAll(items)
+        notifyDataSetChanged()
     }
 
+    class ViewHolder(val binding: LibraryItemBinding):RecyclerView.ViewHolder(binding.root)
 
-    private val title = arrayOf("Daun Jarak", "Lidah Buaya",
-        "Daun Kelor")
-
-    private val desc = arrayOf("Daun ini berguna untuk mengobati penyakit lorem ipsum...",
-        "Daun ini berguna untuk mengobati penyakit lorem ipsum...", "Daun ini berguna untuk mengobati penyakit lorem ipsum...")
-
-
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
+        this.onItemClickCallback = onItemClickCallback
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ViewHolder {
-       val v =LayoutInflater.from(parent.context)
-           .inflate(R.layout.library_item,parent,false)
-
-        return ViewHolder(v)
-    }
+    ): ViewHolder =
+        ViewHolder(LibraryItemBinding.inflate(LayoutInflater.from(parent.context),parent,false))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.title.text  =title[position]
-        holder.desc.text = desc[position]
+        val library = list[position]
+        holder.binding.titleLibrary.text  = library.title
+        val imageSource = holder.binding.root.resources.getIdentifier(library.image, "drawable", holder.binding.root.context.packageName)
+        Glide.with(holder.binding.root).load(imageSource).into(holder.binding.imageLibrary)
+        holder.binding.root.setOnClickListener {
+            onItemClickCallback.onItemClicked(list[holder.absoluteAdapterPosition])
+        }
     }
 
-    override fun getItemCount(): Int {
-       return title.size
+    override fun getItemCount(): Int = list.size
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: LibraryModel)
     }
 }
+
+

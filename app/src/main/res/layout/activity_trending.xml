@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".favorite.FavoriteFragment">
+    tools:context=".ui.view.activity.TrendingActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_Favorit"
+        android:id="@+id/rv_trending"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:listitem="@layout/favorite_item" />
+        tools:listitem="@layout/plant_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

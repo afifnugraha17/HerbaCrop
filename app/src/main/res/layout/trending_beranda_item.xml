@@ -11,7 +11,6 @@
         android:layout_height="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:clickable="true"
         android:focusable="true"
         android:padding="12dp"
         android:outlineAmbientShadowColor="@color/black"
@@ -30,25 +29,26 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-             />
+            android:contentDescription="@string/image_trending" />
 
         <TextView
-            android:id="@+id/title_Tranding"
-            android:layout_width="wrap_content"
+            android:id="@+id/title_trending"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:textColor="@color/white"
-            android:fontFamily="@font/quicksand_bold"
             android:layout_marginStart="25dp"
+            android:layout_marginTop="70dp"
+            android:fontFamily="@font/quicksand_bold"
+            android:shadowColor="#000"
+            android:shadowDx="-2"
+            android:shadowDy="-2"
+            android:shadowRadius="1"
             android:text="@string/title"
-            android:shadowColor = "#000"
-            android:shadowDx = "-2"
-            android:shadowDy = "-2"
-            android:shadowRadius = "1"
+            android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@+id/imageView2"
             app:layout_constraintStart_toStartOf="@+id/imageView2"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
     </androidx.cardview.widget.CardView>
 
 

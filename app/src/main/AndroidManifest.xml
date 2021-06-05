@@ -17,7 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HerbaCrop"
         tools:ignore="AllowBackup">
-        <activity android:name=".ui.view.onboarding.screens.OnBoardingActivity"/>
+        <activity android:name=".camera.PictureCheckActivity"></activity>
+        <activity android:name=".ui.view.activity.LibraryListActivity" />
+        <activity android:name=".ui.view.activity.TrendingActivity" />
+        <activity android:name=".ui.view.activity.NewsDetailActivity" />
+        <activity android:name=".ui.view.activity.AboutActivity" />
+        <activity android:name=".ui.view.onboarding.screens.OnBoardingActivity" />
         <activity android:name=".ui.view.activity.DetailActivity" />
         <activity android:name=".camera.CameraScanActivity" />
         <activity

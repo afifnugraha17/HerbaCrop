@@ -14,7 +14,7 @@
     <string name="deskripsi">Deskripsi</string>
     <string name="berita">Berita</string>
     <string name="trending">Trending</string>
-    <string name="masukan_nama_penyakit">masukan nama penyakit</string>
+    <string name="masukan_nama_penyakit">masukan nama tanaman</string>
     <string name="waiting_search">Waiting to search</string>
     <string name="cari_tanaman">cari tanaman</string>
     <string name="capture">Capture</string>
@@ -26,4 +26,14 @@
     <string name="ml">Machine Learning</string>
     <string name="description_onboarding2">“Menggunakan fitur camera untuk mengambil gambar tanaman yang akan dicari informasinya”</string>
     <string name="description_onboarding3">“Menggunakan Machine Learning untuk algoritma mengolah data sehingga hasil prediksi yang di hasilkan lebih akurat”</string>
+    <string name="about">About</string>
+    <string name="image_trending">Image_Trending</string>
+    <string name="image_news">Image News</string>
+    <string name="judul_berita">Judul Berita</string>
+    <string name="isi_berita">Isi Berita</string>
+    <string name="nama_tanaman">Nama Tanaman</string>
+    <string name="budidaya_tanaman">Budidaya Tanaman :</string>
+    <string name="manfaat">Manfaat :</string>
+    <string name="cara_menanam">Cara Menanam :</string>
+    <string name="gambar_terpilih">Gambar terpilih</string>
 </resources>

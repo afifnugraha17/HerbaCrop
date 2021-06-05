@@ -1,4 +1,4 @@
-package com.ateam.herbacrop.ui.view.fragment
+package com.ateam.herbacrop.favorite
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

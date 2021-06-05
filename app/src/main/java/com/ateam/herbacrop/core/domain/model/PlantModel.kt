@@ -1,11 +1,15 @@
 package com.ateam.herbacrop.core.domain.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class PlantModel(
     var id: Int = 0,
     var budidaya: String = "",
-    var caraMenanam: String = "",
+    var cara_menanam: String = "",
     var image: String ="",
     var manfaat: String ="",
-    var name: String = "",
+    var nama: String = "",
     var favorite: Boolean = false
-)
+) : Parcelable

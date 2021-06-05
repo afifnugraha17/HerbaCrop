@@ -3,11 +3,13 @@ package com.ateam.herbacrop.ui.view.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.ateam.herbacrop.R
 import com.ateam.herbacrop.camera.CameraScanActivity
 import com.ateam.herbacrop.databinding.ActivityMainBinding
-import com.ateam.herbacrop.ui.view.fragment.FavoriteFragment
+import com.ateam.herbacrop.favorite.FavoriteFragment
 import com.ateam.herbacrop.ui.view.fragment.HomeFragment
 import com.ateam.herbacrop.ui.view.fragment.LibraryFragment
 import com.ateam.herbacrop.ui.view.fragment.SearchFragment
@@ -41,6 +43,21 @@ class HomeActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.about_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.about -> {
+                val mIntent = Intent(this, AboutActivity::class.java)
+                startActivity(mIntent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun replaceFragment(fragment: Fragment){

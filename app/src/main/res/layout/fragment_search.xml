@@ -62,29 +62,54 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/img_waiting_seacrh"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="136dp"
-        android:src="@drawable/search_waiting"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/img_waiting_seacrh"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/search_waiting"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_waiting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/quicksand"
+            android:text="@string/waiting_search"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="@+id/img_waiting_seacrh"
+            app:layout_constraintStart_toStartOf="@+id/img_waiting_seacrh"
+            app:layout_constraintTop_toBottomOf="@+id/img_waiting_seacrh"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_search"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-        tools:ignore="ContentDescription" />
-
-    <TextView
-        android:id="@+id/tv_waiting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/quicksand"
-        android:text="@string/waiting_search"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="@+id/img_waiting_seacrh"
-        app:layout_constraintStart_toStartOf="@+id/img_waiting_seacrh"
-        app:layout_constraintTop_toBottomOf="@+id/img_waiting_seacrh"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintVertical_bias="0.542"
+        tools:listitem="@layout/plant_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
