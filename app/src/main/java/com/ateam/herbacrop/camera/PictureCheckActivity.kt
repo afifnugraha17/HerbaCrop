@@ -1,12 +1,15 @@
+@file:Suppress("DEPRECATION")
+
 package com.ateam.herbacrop.camera
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.appcompat.app.AppCompatActivity
 import com.ateam.herbacrop.databinding.ActivityPictureCheckBinding
 import com.ateam.herbacrop.ml.HerbacropModel
-import com.bumptech.glide.Glide
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
@@ -16,6 +19,8 @@ import java.nio.ByteBuffer
 
 class PictureCheckActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPictureCheckBinding
+    private lateinit var img : Bitmap
+    private lateinit var resultText : String
 
     companion object {
         const val EXTRA_USERS = "extra_image"
@@ -26,17 +31,20 @@ class PictureCheckActivity : AppCompatActivity() {
         binding = ActivityPictureCheckBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val data = intent.extras?.get(EXTRA_USERS) as Bitmap
-        Glide.with(binding.root).load(data).into(binding.imagePicked)
+        val data = intent.extras?.get(EXTRA_USERS) as Uri
+
+        binding.imagePicked.setImageURI(data)
+
+        img = MediaStore.Images.Media.getBitmap(this.contentResolver, data);
 
         binding.buttonAccept.setOnClickListener {
-            val image = Bitmap.createScaledBitmap(data, 150, 150, true)
+            val image = Bitmap.createScaledBitmap(img, 150, 150, true)
             try {
                 val model : HerbacropModel = HerbacropModel.newInstance(applicationContext)
 
                 val inputFeature : TensorBuffer = TensorBuffer.createFixedSize(intArrayOf(1, 150, 150, 3), DataType.FLOAT32)
 
-                val imageFeature : TensorImage = TensorImage(DataType.FLOAT32)
+                val imageFeature = TensorImage(DataType.FLOAT32)
                 imageFeature.load(image)
                 val buffer : ByteBuffer = imageFeature.buffer
 
@@ -45,14 +53,19 @@ class PictureCheckActivity : AppCompatActivity() {
                 val output : HerbacropModel.Outputs = model.process(inputFeature)
                 val outputFeature: TensorBuffer = output.outputFeature0AsTensorBuffer
 
-                val resultText : String = (
-                        outputFeature.floatArray[0].toString() + "\n" +
-                                outputFeature.floatArray[1] + "\n" +
-                                outputFeature.floatArray[2] + "\n" +
-                                outputFeature.floatArray[3] + "\n" +
-                                outputFeature.floatArray[4])
+                model.close()
+
+                when{
+                    outputFeature.floatArray[0].toInt() == 1 -> resultText = "Daun Jarak"
+                    outputFeature.floatArray[1].toInt() == 1 -> resultText = "Daun Pegagan"
+                    outputFeature.floatArray[2].toInt() == 1 -> resultText = "Daun Sirih"
+                    outputFeature.floatArray[3].toInt() == 1 -> resultText = "Kumis Kucing"
+                    outputFeature.floatArray[4].toInt() == 1 -> resultText = "Lidah Buaya"
+                }
 
                 println(resultText)
+
+
 
                 val intent = Intent(this, ResultActivity::class.java)
                 intent.putExtra(ResultActivity.EXTRA_USERS, resultText)

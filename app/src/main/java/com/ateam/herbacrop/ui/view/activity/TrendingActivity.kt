@@ -27,15 +27,17 @@ class TrendingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTrendingBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        trendingAdapter = RecyclerSearchAdapter()
 
         val data = intent.getParcelableExtra<TrendingModel>(EXTRA_USERS) as TrendingModel
         val name = data.name
 
+        trendingAdapter = RecyclerSearchAdapter()
+        trendingAdapter.notifyDataSetChanged()
+
         supportActionBar?.title = "Tanaman untuk $name"
 
         koleksi.document("home").collection("library")
-            .orderBy("manfaat").endAt('\uf8ff'+name+'\uf8ff').get()
+            .orderBy("manfaat").startAt(name).endAt('\uf8ff'+name+'\uf8ff').get()
             .addOnSuccessListener {
                 if (!it.isEmpty){
                     val collection: List<DocumentSnapshot> = it.documents
@@ -43,6 +45,7 @@ class TrendingActivity : AppCompatActivity() {
                         val newsModel: PlantModel? = document.toObject(PlantModel::class.java)
                         println("home : $newsModel")
                         newsModel?.let { it1 -> list.add(it1) }
+                        println("list setelah add : $list")
                         trendingAdapter.setData(list)
                     }
                     trendingAdapter.notifyDataSetChanged()
@@ -51,7 +54,6 @@ class TrendingActivity : AppCompatActivity() {
 
         binding.rvTrending.apply {
             layoutManager = LinearLayoutManager(this@TrendingActivity)
-            setHasFixedSize()
             adapter = trendingAdapter
         }
 

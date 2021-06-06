@@ -12,9 +12,9 @@
     <application
         android:allowBackup="true"
         android:name=".App"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/herbacroplogo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/herbacroplogo"
         android:supportsRtl="true"
         android:theme="@style/Theme.HerbaCrop"
         tools:ignore="AllowBackup">
@@ -25,7 +25,8 @@
         <activity android:name=".ui.view.activity.NewsDetailActivity" />
         <activity android:name=".ui.view.activity.AboutActivity" />
         <activity android:name=".ui.view.onboarding.screens.OnBoardingActivity" />
-        <activity android:name=".ui.view.activity.DetailActivity" />
+        <activity android:name=".ui.view.activity.DetailActivity"
+            android:theme="@style/Theme.HerbaCrop.NoActionBar"/>
         <activity android:name=".camera.CameraScanActivity" />
         <activity
             android:name=".ui.view.activity.SplashActivity"

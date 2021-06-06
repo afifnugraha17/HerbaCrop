@@ -13,5 +13,6 @@ data class PlantData(
     var image: String ="",
     var manfaat: String ="",
     var name: String = "",
+    var type: String = "",
     var favorite: Boolean = false
 )

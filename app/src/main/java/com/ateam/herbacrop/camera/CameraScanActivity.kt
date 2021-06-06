@@ -2,140 +2,138 @@
 
 package com.ateam.herbacrop.camera
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.ContentUris
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.DocumentsContract
+import android.os.Environment
 import android.provider.MediaStore
+import android.webkit.MimeTypeMap
+import android.widget.ImageView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import com.ateam.herbacrop.core.utils.ScanOperation
 import com.ateam.herbacrop.databinding.ActivityCameraScanBinding
+import timber.log.Timber
+import java.io.File
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
 class CameraScanActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraScanBinding
+    private lateinit var selectedImage : ImageView
+    private var currentPhotoPath : String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCameraScanBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        selectedImage = binding.imageCamera
+
         binding.btnCapture.setOnClickListener {
             capturePhoto()
         }
+
         binding.btnChoose.setOnClickListener {
             val checkSelfPermission = ContextCompat.checkSelfPermission(this,
-                android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
             if (checkSelfPermission != PackageManager.PERMISSION_GRANTED){
                 ActivityCompat.requestPermissions(this,
-                    arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
+                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
             }
             else{
-                openGallery()
+                val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                startActivityForResult(gallery, ScanOperation.operationChoose)
             }
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>
-                                            , grantedResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantedResults)
-        when(requestCode){
-            1 ->
-                if (grantedResults.isNotEmpty() && grantedResults[0] ==
-                    PackageManager.PERMISSION_GRANTED){
-                    openGallery()
-                }
-        }
-    }
-
+    @SuppressLint("SimpleDateFormat")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when(requestCode){
-            ScanOperation.operationCapture ->
-                if (resultCode == Activity.RESULT_OK) {
-                    val bitmap = data?.extras?.get("data") as Bitmap
-                    val intent = Intent(this,PictureCheckActivity::class.java)
-                    intent.putExtra(PictureCheckActivity.EXTRA_USERS, bitmap)
+            ScanOperation.operationCapture -> {
+                if (resultCode == Activity.RESULT_OK){
+                    val file = File(currentPhotoPath)
+                    selectedImage.setImageURI(Uri.fromFile(file))
+                    Timber.tag("absolute Uri").d("Absolute Uri of Image is ${Uri.fromFile(file)}")
+
+                    val mediaScan = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
+                    val contentUri = Uri.fromFile(file)
+                    mediaScan.data = contentUri
+                    this.sendBroadcast(mediaScan)
+
+                    val intent = Intent(this, PictureCheckActivity::class.java)
+                    intent.putExtra(PictureCheckActivity.EXTRA_USERS, contentUri)
                     startActivity(intent)
                 }
-            ScanOperation.operationChoose ->
-                if (resultCode == Activity.RESULT_OK) {
-                    if (Build.VERSION.SDK_INT >= 21) {
-                        handleImageOnKitkat(data)
-                    }
+            }
+
+            ScanOperation.operationChoose -> {
+                if (resultCode == Activity.RESULT_OK){
+                    val contentUri = data?.data
+                    val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+                    val imageFileName = "JPEG${timeStamp}."+ contentUri?.let { getFileExt(it) }
+                    selectedImage.setImageURI(contentUri)
+
+                    val intent = Intent(this, PictureCheckActivity::class.java)
+                    intent.putExtra(PictureCheckActivity.EXTRA_USERS, contentUri)
+                    startActivity(intent)
                 }
+            }
+
         }
+
     }
 
-    private fun handleImageOnKitkat(data: Intent?) {
-        var imagePath: String? = null
-        val uri = data!!.data
+    private fun getFileExt(contentUri: Uri): Any? {
+        val resolver = contentResolver
+        val mime = MimeTypeMap.getSingleton()
+        return mime.getExtensionFromMimeType(resolver.getType(contentUri))
+    }
 
-        if (DocumentsContract.isDocumentUri(this, uri)){
-            val docId = DocumentsContract.getDocumentId(uri)
-            if ("com.android.providers.media.documents" == uri?.authority){
-                val id = docId.split(":")[1]
-                val selsetion = MediaStore.Images.Media._ID + "=" + id
-                imagePath = getImagePath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                    selsetion)
-            }
-            else if ("com.android.providers.downloads.documents" == uri?.authority){
-                val contentUri = ContentUris.withAppendedId(Uri.parse(
-                    "content://downloads/public_downloads"), java.lang.Long.valueOf(docId))
-                imagePath = getImagePath(contentUri, null)
-            }
+    private fun capturePhoto() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_DENIED){
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), 3)
+        }else{
+            dispatchTakePictureIntent()
         }
-        else if ("content".equals(uri?.scheme, ignoreCase = true)){
-            imagePath = uri?.let { getImagePath(it, null) }
-        }
-        else if ("file".equals(uri?.scheme, ignoreCase = true)){
-            imagePath = uri?.path
-        }
-        renderImage(imagePath)
     }
 
     @SuppressLint("QueryPermissionsNeeded")
-    private fun capturePhoto(){
-        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
-            takePictureIntent.resolveActivity(packageManager)?.also {
+    private fun dispatchTakePictureIntent() {
+        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        if (takePictureIntent.resolveActivity(packageManager) != null){
+            var photo : File? = null
+            try {
+                photo = createImageFile()
+            }catch (e: IOException){
+                Timber.e(e)
+            }
+            if (photo != null) {
+                val photoUri : Uri = FileProvider.getUriForFile(this, "com.ateam.android.fileprovider", photo)
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
                 startActivityForResult(takePictureIntent, ScanOperation.operationCapture)
             }
         }
     }
 
-    private fun openGallery(){
-        val intent = Intent("android.intent.action.GET_CONTENT")
-        intent.type = "image/*"
-        startActivityForResult(intent, ScanOperation.operationChoose)
+    @SuppressLint("SimpleDateFormat")
+    private fun createImageFile() : File {
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        val imageFileName = "JPEG${timeStamp}_"
+        val storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+        val image = File.createTempFile(imageFileName,".jpg",storageDir)
+
+        currentPhotoPath = image.absolutePath
+        return image
     }
 
-    private fun renderImage(imagePath: String?){
-        if (imagePath != null) {
-            val bitmap = BitmapFactory.decodeFile(imagePath)
-            val intent = Intent(this,PictureCheckActivity::class.java)
-            intent.putExtra(PictureCheckActivity.EXTRA_USERS, bitmap)
-            startActivity(intent)
-        }
-    }
-
-    @SuppressLint("Range")
-    private fun getImagePath(uri: Uri, selection: String?): String {
-        var path: String? = null
-        val cursor = contentResolver.query(uri, null, selection, null, null )
-        if (cursor != null){
-            if (cursor.moveToFirst()) {
-                path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA))
-            }
-            cursor.close()
-        }
-        return path ?: ""
-    }
 
 }

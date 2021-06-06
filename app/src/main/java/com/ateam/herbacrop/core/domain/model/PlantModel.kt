@@ -11,5 +11,6 @@ data class PlantModel(
     var image: String ="",
     var manfaat: String ="",
     var nama: String = "",
+    var type : String = "",
     var favorite: Boolean = false
 ) : Parcelable

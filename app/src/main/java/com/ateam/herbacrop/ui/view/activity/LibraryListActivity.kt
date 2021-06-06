@@ -55,7 +55,6 @@ class LibraryListActivity : AppCompatActivity() {
 
         binding.rvListLibrary.apply {
             layoutManager = LinearLayoutManager(context)
-            hasFixedSize()
             adapter = listAdapter
         }
 

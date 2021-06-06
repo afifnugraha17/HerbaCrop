@@ -8,12 +8,16 @@ import com.ateam.herbacrop.databinding.FavoriteItemBinding
 import com.bumptech.glide.Glide
 
 class RecyclerFavoriteAdapter : RecyclerView.Adapter<RecyclerFavoriteAdapter.ViewHolder>() {
+    private lateinit var onItemClickCallback: OnItemClickCallback
     private val dataList=  ArrayList<PlantModel>()
 
     fun setData(items: List<PlantModel>) {
         dataList.clear()
         dataList.addAll(items)
         notifyDataSetChanged()
+    }
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
+        this.onItemClickCallback = onItemClickCallback
     }
 
     class ViewHolder(val binding: FavoriteItemBinding) : RecyclerView.ViewHolder(binding.root)
@@ -24,10 +28,22 @@ class RecyclerFavoriteAdapter : RecyclerView.Adapter<RecyclerFavoriteAdapter.Vie
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val result = dataList[position]
         val binding = holder.binding
-        binding.tvLibraryTitle.text = result.nama
-        binding.tvLibraryDesc.text = result.budidaya
-        Glide.with(binding.root).load(result.image).into(binding.profileImageLibrary)
+        binding.tvNamaTumbuhan.text = result.nama
+        binding.tvType.text = result.type
+        Glide.with(binding.root).load(result.image).into(binding.imageFavorit)
+
+        holder.binding.fbFavoriteDetail.setOnClickListener {
+            onItemClickCallback.onItemClicked(dataList[holder.absoluteAdapterPosition])
+        }
+
+        holder.binding.root.setOnClickListener {
+            onItemClickCallback.onItemClicked(dataList[holder.absoluteAdapterPosition])
+        }
     }
 
     override fun getItemCount(): Int = dataList.size
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: PlantModel)
+    }
 }

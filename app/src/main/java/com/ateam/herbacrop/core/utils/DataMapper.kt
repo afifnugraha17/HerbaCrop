@@ -13,6 +13,7 @@ object DataMapper {
                 it.image,
                 it.manfaat,
                 it.name,
+                it.type,
                 it.favorite
             )
         }
@@ -24,6 +25,7 @@ object DataMapper {
         data.image,
         data.manfaat,
         data.nama,
+        data.type,
         true
     )
 }

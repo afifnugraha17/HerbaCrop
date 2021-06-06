@@ -2,7 +2,6 @@ package com.ateam.herbacrop.ui.view.activity
 
 import android.os.Bundle
 import android.view.View
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.ateam.herbacrop.core.domain.model.PlantModel
 import com.ateam.herbacrop.databinding.ActivityDetailBinding
@@ -12,11 +11,12 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
-    private val viewModel : FavoriteViewModel by viewModels()
+    private val viewModel : FavoriteViewModel by viewModel()
 
     companion object {
         const val EXTRA_USERS = "extra_users"
