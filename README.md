@@ -5,7 +5,7 @@
 [![Latest Version](https://img.shields.io/github/release/afifnugraha17/HerbaCrop.svg?style=flat-square)](https://github.com/afifnugraha17/HerbaCrop/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://github.com/afifnugraha17/HerbaCrop/blob/master/LICENSE.md)
 ![](https://img.shields.io/badge/Code-Kotlin-informational?style=flat-square&logo=kotlin&logoColor=white&color=0095D5)
-![](https://img.shields.io/badge/Library-TensorFlow-informational?style=flat-square&logo=tensorflow&logoColor=white&color=008080)
+![](https://img.shields.io/badge/Library-TensorFlow-informational?style=flat-square&logo=tensorflow&logoColor=white&color=FDA600)
 [![afifnugraha17](https://circleci.com/gh/afifnugraha17/HerbaCrop.svg?style=svg)](https://circleci.com/gh/afifnugraha17/HerbaCrop)
 
 ## Description
