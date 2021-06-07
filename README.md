@@ -4,7 +4,7 @@
 ## Technology and Stats
 [![Latest Version](https://img.shields.io/github/release/afifnugraha17/HerbaCrop.svg?style=flat-square)](https://github.com/afifnugraha17/HerbaCrop/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://github.com/afifnugraha17/HerbaCrop/blob/master/LICENSE.md)
-![](https://img.shields.io/badge/SDK-Android-informational?style=flat-square&logo=android&logoColor=white&color=0095D5)
+![](https://img.shields.io/badge/SDK-Android-informational?style=flat-square&logo=android&logoColor=white&color=59FF05)
 ![](https://img.shields.io/badge/Code-Kotlin-informational?style=flat-square&logo=kotlin&logoColor=white&color=0095D5)
 ![](https://img.shields.io/badge/Library-TensorFlow-informational?style=flat-square&logo=tensorflow&logoColor=white&color=FDA600)
 ![](https://img.shields.io/badge/Database-Firestore-informational?style=flat-square&logo=firebase&logoColor=white&color=0095D5)
