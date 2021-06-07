@@ -7,9 +7,11 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ateam.herbacrop.databinding.ActivityPictureCheckBinding
 import com.ateam.herbacrop.ml.HerbacropModel
+import com.ateam.herbacrop.ui.view.activity.HomeActivity
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
@@ -35,7 +37,7 @@ class PictureCheckActivity : AppCompatActivity() {
 
         binding.imagePicked.setImageURI(data)
 
-        img = MediaStore.Images.Media.getBitmap(this.contentResolver, data);
+        img = MediaStore.Images.Media.getBitmap(this.contentResolver, data)
 
         binding.buttonAccept.setOnClickListener {
             val image = Bitmap.createScaledBitmap(img, 150, 150, true)
@@ -63,7 +65,7 @@ class PictureCheckActivity : AppCompatActivity() {
                     outputFeature.floatArray[4].toInt() == 1 -> resultText = "Lidah Buaya"
                 }
 
-                println(resultText)
+
 
 
 
@@ -80,7 +82,7 @@ class PictureCheckActivity : AppCompatActivity() {
         }
 
         binding.buttonCancel.setOnClickListener {
-            val intent = Intent(this,CameraScanActivity::class.java)
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
     }

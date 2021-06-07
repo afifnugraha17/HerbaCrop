@@ -13,7 +13,6 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.webkit.MimeTypeMap
-import android.widget.ImageView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
@@ -27,14 +26,11 @@ import java.util.*
 
 class CameraScanActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraScanBinding
-    private lateinit var selectedImage : ImageView
     private var currentPhotoPath : String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCameraScanBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        selectedImage = binding.imageCamera
 
         binding.btnCapture.setOnClickListener {
             capturePhoto()
@@ -61,7 +57,6 @@ class CameraScanActivity : AppCompatActivity() {
             ScanOperation.operationCapture -> {
                 if (resultCode == Activity.RESULT_OK){
                     val file = File(currentPhotoPath)
-                    selectedImage.setImageURI(Uri.fromFile(file))
                     Timber.tag("absolute Uri").d("Absolute Uri of Image is ${Uri.fromFile(file)}")
 
                     val mediaScan = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
@@ -80,7 +75,6 @@ class CameraScanActivity : AppCompatActivity() {
                     val contentUri = data?.data
                     val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
                     val imageFileName = "JPEG${timeStamp}."+ contentUri?.let { getFileExt(it) }
-                    selectedImage.setImageURI(contentUri)
 
                     val intent = Intent(this, PictureCheckActivity::class.java)
                     intent.putExtra(PictureCheckActivity.EXTRA_USERS, contentUri)
@@ -117,7 +111,7 @@ class CameraScanActivity : AppCompatActivity() {
                 Timber.e(e)
             }
             if (photo != null) {
-                val photoUri : Uri = FileProvider.getUriForFile(this, "com.ateam.android.fileprovider", photo)
+                val photoUri : Uri = FileProvider.getUriForFile(this, "com.ateam.herbacrop.fileprovider", photo)
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
                 startActivityForResult(takePictureIntent, ScanOperation.operationCapture)
             }
@@ -128,7 +122,7 @@ class CameraScanActivity : AppCompatActivity() {
     private fun createImageFile() : File {
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
         val imageFileName = "JPEG${timeStamp}_"
-        val storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+        val storageDir = getExternalFilesDir(Environment.DIRECTORY_DCIM)
         val image = File.createTempFile(imageFileName,".jpg",storageDir)
 
         currentPhotoPath = image.absolutePath

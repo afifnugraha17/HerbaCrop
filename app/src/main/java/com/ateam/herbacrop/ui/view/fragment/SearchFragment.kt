@@ -20,7 +20,7 @@ class SearchFragment : Fragment() {
     private lateinit var searchAdapter: RecyclerSearchAdapter
     private val db = Firebase.firestore
     private val koleksi = db.collection("main_data")
-    private var list = ArrayList<PlantModel>()
+    private var list = mutableListOf<PlantModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +33,7 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         searchAdapter = RecyclerSearchAdapter()
+        searchAdapter.notifyDataSetChanged()
 
         binding.homeBtnSearch.setOnClickListener {
             val search = binding.homeEtSearch.text.toString().trim()
@@ -40,19 +41,22 @@ class SearchFragment : Fragment() {
             if (search.isEmpty()){
                 binding.homeEtSearch.error = "Tulis sesuatu!"
             }
+
             koleksi.document("home").collection("library")
                 .orderBy("nama").startAt(search).endAt(search+'\uf8ff').get()
                 .addOnSuccessListener {
+                    var list2 = mutableListOf<PlantModel>()
                     val collection: List<DocumentSnapshot> = it.documents
                     for (document in collection){
                         val newsModel: PlantModel? = document.toObject(PlantModel::class.java)
                         println("hasil search : $newsModel")
-                        newsModel?.let { it1 -> list.add(it1) }
-                        binding.message.visibility = View.GONE
-                        searchAdapter.setData(list)
+                        newsModel?.let { it1 -> list2.add(it1) }
                     }
-                    searchAdapter.notifyDataSetChanged()
+                    list = list2
                 }
+            binding.message.visibility = View.GONE
+            searchAdapter.setData(list)
+            searchAdapter.notifyDataSetChanged()
         }
 
         searchAdapter.setOnItemClickCallback(object: RecyclerSearchAdapter.OnItemClickCallback{

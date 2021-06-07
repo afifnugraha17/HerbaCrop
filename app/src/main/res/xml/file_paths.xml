@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <files-path
+        name="my_images"
+        path="images/" />
+
+    <files-path
+        name="my_docs"
+        path="docs/" />
+
+    <external-files-path
+        name="external_files_dir"
+        path="/" />
+
+    <external-cache-path
+        name="InstructiveRide"
+        path="Android/data/com.package.ride/files/DCIM"/>
+
+    <cache-path
+        name="cache_dir"
+        path="/" />
+
+    <external-cache-path
+        name="external_cache_dir"
+        path="/" />
+
+    <external-media-path
+        name="external_media_dir"
+        path="/" />
+
+    <external-media-path
+        name="external_media_dir"
+        path="/" />
+</paths>

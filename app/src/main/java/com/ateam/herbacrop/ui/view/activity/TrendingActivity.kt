@@ -15,7 +15,7 @@ import com.google.firebase.ktx.Firebase
 class TrendingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTrendingBinding
     private lateinit var trendingAdapter: RecyclerSearchAdapter
-    private val list = ArrayList<PlantModel>()
+    private var list = mutableListOf<PlantModel>()
     private val db = Firebase.firestore
     private val koleksi = db.collection("main_data")
 
@@ -40,14 +40,16 @@ class TrendingActivity : AppCompatActivity() {
             .orderBy("manfaat").startAt(name).endAt('\uf8ff'+name+'\uf8ff').get()
             .addOnSuccessListener {
                 if (!it.isEmpty){
+                    val list2 = mutableListOf<PlantModel>()
                     val collection: List<DocumentSnapshot> = it.documents
                     for (document in collection){
                         val newsModel: PlantModel? = document.toObject(PlantModel::class.java)
                         println("home : $newsModel")
-                        newsModel?.let { it1 -> list.add(it1) }
-                        println("list setelah add : $list")
-                        trendingAdapter.setData(list)
+                        newsModel?.let { it1 -> list2.add(it1) }
+                        println("list setelah add : $list2")
                     }
+                    list = list2
+                    trendingAdapter.setData(list)
                     trendingAdapter.notifyDataSetChanged()
                 }
             }

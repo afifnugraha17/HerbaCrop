@@ -17,7 +17,7 @@ class LibraryListActivity : AppCompatActivity() {
     private lateinit var listAdapter: RecyclerSearchAdapter
     private val db = Firebase.firestore
     private val koleksi = db.collection("main_data")
-    private val list = ArrayList<PlantModel>()
+    private val list = mutableListOf<PlantModel>()
 
     companion object {
         const val EXTRA_USERS = "extra_users"

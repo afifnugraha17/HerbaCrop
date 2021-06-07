@@ -3,6 +3,7 @@ package com.ateam.herbacrop.camera
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ateam.herbacrop.core.domain.model.PlantModel
 import com.ateam.herbacrop.databinding.ActivityResultBinding
@@ -15,7 +16,7 @@ import com.google.firebase.ktx.Firebase
 class ResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultBinding
     private lateinit var plantAdapter: RecyclerSearchAdapter
-    private val list = ArrayList<PlantModel>()
+    private var list = mutableListOf<PlantModel>()
     private val db = Firebase.firestore
     private val koleksi = db.collection("main_data")
 
@@ -32,16 +33,20 @@ class ResultActivity : AppCompatActivity() {
 
         val data = intent.getStringExtra(EXTRA_USERS)
 
+        Toast.makeText(this, data, Toast.LENGTH_LONG).show()
+
         koleksi.document("home").collection("library")
             .orderBy("nama").startAt(data).endAt(data+'\uf8ff').get()
             .addOnSuccessListener {
+                val list2 = mutableListOf<PlantModel>()
                 val collection: List<DocumentSnapshot> = it.documents
                 for (document in collection){
                     val newsModel: PlantModel? = document.toObject(PlantModel::class.java)
                     println("hasil search : $newsModel")
-                    newsModel?.let { it1 -> list.add(it1) }
-                    plantAdapter.setData(list)
+                    newsModel?.let { it1 -> list2.add(it1) }
                 }
+                list = list2
+                plantAdapter.setData(list)
                 plantAdapter.notifyDataSetChanged()
             }
 
