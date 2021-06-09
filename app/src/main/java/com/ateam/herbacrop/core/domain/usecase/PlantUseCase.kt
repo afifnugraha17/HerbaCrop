@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import com.ateam.herbacrop.core.domain.model.AboutDescModel
 import com.ateam.herbacrop.core.domain.model.AboutModel
 import com.ateam.herbacrop.core.domain.model.*
+import com.ateam.herbacrop.core.domain.model.PlantModel
+
 
 interface PlantUseCase {
     fun addToDb(id: PlantModel)
@@ -33,4 +35,5 @@ interface PlantUseCase {
     fun getAboutData() : LiveData<AboutDescModel>
 
     fun getDeveloperData() : LiveData<List<AboutModel>>
+
 }

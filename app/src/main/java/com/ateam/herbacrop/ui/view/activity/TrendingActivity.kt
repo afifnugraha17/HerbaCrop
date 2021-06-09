@@ -16,6 +16,7 @@ class TrendingActivity : AppCompatActivity() {
     private lateinit var trendingAdapter: RecyclerSearchAdapter
     private val viewModel : HomeViewModel by viewModel()
 
+
     companion object {
         const val EXTRA_USERS = "extra_users"
     }

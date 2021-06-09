@@ -27,6 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <ToggleButton
                     android:id="@+id/toggleButton"
                     android:layout_width="65dp"
@@ -63,6 +64,7 @@
                     tools:text="@string/nama_tanaman" />
 
                 <ScrollView android:layout_height="match_parent" android:layout_width="match_parent">
+
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -74,8 +76,6 @@
                             android:textColor="@color/white"
                             android:fontFamily="@font/quicksand_bold"
                             android:text="@string/budidaya_tanaman" />
-
-
                         <TextView
                             android:height="80dp"
                             android:textColor="@color/white"

@@ -16,6 +16,7 @@ class LibraryListActivity : AppCompatActivity() {
     private lateinit var listAdapter: RecyclerSearchAdapter
     private val viewModel : LibraryViewModel by viewModel()
 
+
     companion object {
         const val EXTRA_USERS = "extra_users"
     }
@@ -57,6 +58,7 @@ class LibraryListActivity : AppCompatActivity() {
                 })
             }
         }
+
 
         binding.rvListLibrary.apply {
             layoutManager = LinearLayoutManager(context)

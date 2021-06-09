@@ -13,6 +13,12 @@ import com.ateam.herbacrop.core.utils.DataMapper
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
+import com.ateam.herbacrop.core.data.source.local.LocalSource
+import com.ateam.herbacrop.core.domain.model.PlantModel
+import com.ateam.herbacrop.core.domain.repository.IRepository
+import com.ateam.herbacrop.core.utils.DataMapper
 import kotlinx.coroutines.runBlocking
 
 
@@ -35,6 +41,7 @@ class Repository constructor(private val local: LocalSource) : IRepository {
     override fun setFavorite(id: Int) = runBlocking { local.setFavorite(id) }
 
     override fun unSetFavorite(id: Int) = runBlocking { local.unSetFavorite(id) }
+
 
     override fun searchPlant(query: String): LiveData<List<PlantModel>> {
         val live = MutableLiveData<List<PlantModel>>()

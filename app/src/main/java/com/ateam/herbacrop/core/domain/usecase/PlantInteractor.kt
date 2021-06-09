@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import com.ateam.herbacrop.core.domain.model.AboutDescModel
 import com.ateam.herbacrop.core.domain.model.AboutModel
 import com.ateam.herbacrop.core.domain.model.*
+import com.ateam.herbacrop.core.domain.model.PlantModel
 import com.ateam.herbacrop.core.domain.repository.IRepository
 
 class PlantInteractor constructor(private val repository: IRepository) : PlantUseCase {
@@ -34,5 +35,6 @@ class PlantInteractor constructor(private val repository: IRepository) : PlantUs
     override fun getAboutData(): LiveData<AboutDescModel> = repository.getAboutData()
 
     override fun getDeveloperData(): LiveData<List<AboutModel>> = repository.getDeveloperData()
+
 
 }

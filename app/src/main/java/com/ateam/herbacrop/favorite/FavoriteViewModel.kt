@@ -6,6 +6,7 @@ import com.ateam.herbacrop.core.domain.model.PlantModel
 import com.ateam.herbacrop.core.domain.usecase.PlantUseCase
 
 class FavoriteViewModel constructor(private val useCase: PlantUseCase) : ViewModel() {
+
     fun loadFavorite() : LiveData<List<PlantModel>> = useCase.getFavorite()
 
     fun checkFavorite(id: Int) : Int = useCase.checkFavorite(id)

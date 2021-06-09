@@ -39,6 +39,41 @@ class AboutActivity : AppCompatActivity() {
             }
         })
 
+        koleksi.document("home").collection("about")
+            .get()
+            .addOnSuccessListener {
+                if (!it.isEmpty){
+                    val collection:List<DocumentSnapshot> = it.documents
+                    for (document in collection){
+                        val aboutModel:AboutModel? = document.toObject(AboutModel::class.java)
+                        println("home :$aboutModel")
+                        aboutModel?.let {
+                            it1->about.add(it1)
+                            aboutAdapter.setData(about)
+                        }
+                        aboutAdapter.notifyDataSetChanged()
+                    }
+                }
+            }
+
+        koleksi.document("home")
+            .get()
+            .addOnSuccessListener {
+                if (it != null){
+
+                    val collection: DocumentSnapshot? = it
+                        val aboutModel: AboutDescModel? = collection?.toObject(AboutDescModel::class.java)
+                        println("home :$aboutModel")
+                        aboutModel?.let {
+                            it1->aboutDesc.add(aboutModel)
+                            binding.desctambah.text = it1.abstract_4
+                            binding.textdesc1.text = it1.abstract_6
+                            binding.desc2.text = it1.abstract_5
+                        }
+
+                }
+            }
+
         binding.rvAbout.apply {
             val layoutManager = LinearLayoutManager(this@AboutActivity)
             layoutManager.orientation = LinearLayoutManager.HORIZONTAL
