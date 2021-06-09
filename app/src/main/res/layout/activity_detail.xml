@@ -28,7 +28,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-
                 <ToggleButton
                     android:id="@+id/toggleButton"
                     android:layout_width="65dp"
@@ -51,7 +50,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="8dp"
                     app:civ_border_color="@color/black"
-                    app:civ_border_width="2dp"
+                    app:civ_border_width="3dp"
                     tools:src="@android:color/darker_gray" />
 
                 <TextView
@@ -61,8 +60,10 @@
                     android:gravity="center"
                     android:textColor="@color/white"
                     android:textSize="24sp"
+                    android:fontFamily="@font/quicksand_bold"
                     tools:text="@string/nama_tanaman" />
 
+                <ScrollView android:layout_height="match_parent" android:layout_width="match_parent">
 
                 <TableLayout
                     android:layout_width="match_parent"
@@ -73,18 +74,21 @@
                         <TextView
                             android:textSize="18sp"
                             android:textColor="@color/white"
+                            android:fontFamily="@font/quicksand_bold"
                             android:text="@string/budidaya_tanaman" />
-
                         <TextView
                             android:height="80dp"
                             android:textColor="@color/white"
                             android:id="@+id/budi_daya"
-                            android:text="@string/budidaya_tanaman" />
+                            android:fontFamily="@font/quicksand_bold"
+                            android:textSize="15dp"
+                            android:text="@string/budidaya_tanaman"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"/>
 
                 </TableLayout>
-
+                </ScrollView>
             </LinearLayout>
-
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/detail_toolbar"
                 android:layout_width="match_parent"
@@ -111,6 +115,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:paddingStart="12dp"
                 android:orientation="vertical">
 
             <TextView
@@ -118,6 +123,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:text="@string/manfaat"
+                android:fontFamily="@font/quicksand_bold"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -126,8 +132,8 @@
                 android:id="@+id/manfaat_tanaman"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
                 android:textAlignment="inherit"
+                android:fontFamily="@font/quicksand"
                 android:text="Content"
                 android:textColor="@color/black"
                 android:textSize="18sp"
@@ -139,6 +145,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:text="@string/cara_menanam"
+                android:fontFamily="@font/quicksand_bold"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -148,9 +155,10 @@
                 android:id="@+id/cara_tanaman"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="75dp"
                 android:textAlignment="inherit"
+                android:paddingTop="12dp"
                 android:text="Content"
+                android:fontFamily="@font/quicksand"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />

@@ -14,18 +14,14 @@ import com.ateam.herbacrop.ui.adapter.RecylerBerandaAdapter
 import com.ateam.herbacrop.ui.adapter.RecylerTrendingAdapter
 import com.ateam.herbacrop.ui.view.activity.NewsDetailActivity
 import com.ateam.herbacrop.ui.view.activity.TrendingActivity
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.ateam.herbacrop.ui.viewmodel.HomeViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var berandaAdapter: RecylerBerandaAdapter
     private lateinit var trendingAdapter: RecylerTrendingAdapter
-    private val db = Firebase.firestore
-    private val koleksi = db.collection("main_data")
-    private val list = ArrayList<NewsModel>()
-    private val trend = ArrayList<TrendingModel>()
+    private val viewModel : HomeViewModel by viewModel()
 
 
     override fun onCreateView(
@@ -42,35 +38,19 @@ class HomeFragment : Fragment() {
         berandaAdapter = RecylerBerandaAdapter()
         trendingAdapter = RecylerTrendingAdapter()
 
-        koleksi.document("home").collection("trending")
-            .get()
-            .addOnSuccessListener {
-                if (!it.isEmpty){
-                    val collection: List<DocumentSnapshot> = it.documents
-                    for (document in collection){
-                        val newsModel: TrendingModel? = document.toObject(TrendingModel::class.java)
-                        println("home : $newsModel")
-                        newsModel?.let { it1 -> trend.add(it1) }
-                        trendingAdapter.setData(trend)
-                    }
-                    trendingAdapter.notifyDataSetChanged()
-                }
+        viewModel.getTrendingList().observe(viewLifecycleOwner,{
+            if (it.isNotEmpty()){
+                trendingAdapter.setData(it)
+                trendingAdapter.notifyDataSetChanged()
             }
+        })
 
-        koleksi.document("home").collection("news")
-            .get()
-            .addOnSuccessListener {
-                if (!it.isEmpty){
-                    val collection: List<DocumentSnapshot> = it.documents
-                    for (document in collection){
-                        val newsModel: NewsModel? = document.toObject(NewsModel::class.java)
-                        println("home : $newsModel")
-                        newsModel?.let { it1 -> list.add(it1) }
-                        berandaAdapter.setData(list)
-                    }
-                    berandaAdapter.notifyDataSetChanged()
-                }
+        viewModel.getNewsList().observe(viewLifecycleOwner,{
+            if (it.isNotEmpty()){
+                berandaAdapter.setData(it)
+                berandaAdapter.notifyDataSetChanged()
             }
+        })
 
         berandaAdapter.setOnItemClickCallback(object : RecylerBerandaAdapter.OnItemClickCallback{
             override fun onItemClicked(data: NewsModel) {

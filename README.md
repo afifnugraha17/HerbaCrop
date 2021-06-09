@@ -47,3 +47,4 @@ git clone https://github.com/afifnugraha17/HerbaCrop.git
 2. Using GitHub
 - Login to your GitHub Account and access [HerbaCrop](https://github.com/afifnugraha17/HerbaCrop) git repository
 - Click on Code dropdown, select Download ZIP"
+

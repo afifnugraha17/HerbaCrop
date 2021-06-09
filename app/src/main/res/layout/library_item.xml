@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/sp_bg"
     android:layout_height="wrap_content">
 
 
@@ -28,8 +29,8 @@
             android:layout_marginTop="16dp"
             android:layout_gravity="center|left"
             android:src="@drawable/jarak"
-            app:civ_border_color="#531414"
-            app:civ_border_width="1dp"
+            app:civ_border_color="#D71C1C18"
+            app:civ_border_width="3dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,14 +39,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="125dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="40dp"
             android:fontFamily="@font/quicksand_bold"
-            android:shadowColor = "#000"
-            android:shadowDx = "-2"
-            android:shadowDy = "-2"
-            android:shadowRadius = "1"
+            android:shadowColor="#000"
+            android:shadowDx="-2"
+            android:shadowDy="-2"
+            android:shadowRadius="1"
             android:text="@string/title"
-            android:textSize="23sp"
+            android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/profile_image"
             app:layout_constraintTop_toTopOf="@+id/profile_image" />
 

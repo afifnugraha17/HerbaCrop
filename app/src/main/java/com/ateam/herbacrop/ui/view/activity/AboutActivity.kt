@@ -3,23 +3,15 @@ package com.ateam.herbacrop.ui.view.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ateam.herbacrop.core.domain.model.AboutDescModel
-import com.ateam.herbacrop.core.domain.model.AboutModel
 import com.ateam.herbacrop.databinding.ActivityAboutBinding
 import com.ateam.herbacrop.ui.adapter.RecyclerAboutAdapter
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.ateam.herbacrop.ui.viewmodel.AboutViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AboutActivity : AppCompatActivity() {
-
     private lateinit var binding:ActivityAboutBinding
     private lateinit var aboutAdapter:RecyclerAboutAdapter
-    private val db = Firebase.firestore
-    private val koleksi = db.collection("main_data")
-    private val about = ArrayList<AboutModel>()
-    private val aboutDesc = ArrayList<AboutDescModel>()
-
+    private val viewModel : AboutViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +22,22 @@ class AboutActivity : AppCompatActivity() {
         supportActionBar?.title = "About"
 
         aboutAdapter = RecyclerAboutAdapter()
+
+        viewModel.getAboutDesc().observe(this, {
+            if (it != null){
+                println("about : $it")
+                binding.desctambah.text = it.abstract_4
+                binding.desc2.text = it.abstract_5
+                binding.textdesc1.text = it.abstract_6
+            }
+        })
+
+        viewModel.getDevList().observe(this, {
+            if (it.isNotEmpty()){
+                aboutAdapter.setData(it)
+                aboutAdapter.notifyDataSetChanged()
+            }
+        })
 
         koleksi.document("home").collection("about")
             .get()

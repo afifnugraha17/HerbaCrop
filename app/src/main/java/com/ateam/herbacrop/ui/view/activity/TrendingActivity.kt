@@ -8,16 +8,14 @@ import com.ateam.herbacrop.core.domain.model.PlantModel
 import com.ateam.herbacrop.core.domain.model.TrendingModel
 import com.ateam.herbacrop.databinding.ActivityTrendingBinding
 import com.ateam.herbacrop.ui.adapter.RecyclerSearchAdapter
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.ateam.herbacrop.ui.viewmodel.HomeViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TrendingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTrendingBinding
     private lateinit var trendingAdapter: RecyclerSearchAdapter
-    private var list = mutableListOf<PlantModel>()
-    private val db = Firebase.firestore
-    private val koleksi = db.collection("main_data")
+    private val viewModel : HomeViewModel by viewModel()
+
 
     companion object {
         const val EXTRA_USERS = "extra_users"
@@ -36,23 +34,12 @@ class TrendingActivity : AppCompatActivity() {
 
         supportActionBar?.title = "Tanaman untuk $name"
 
-        koleksi.document("home").collection("library")
-            .orderBy("manfaat").startAt(name).endAt('\uf8ff'+name+'\uf8ff').get()
-            .addOnSuccessListener {
-                if (!it.isEmpty){
-                    val list2 = mutableListOf<PlantModel>()
-                    val collection: List<DocumentSnapshot> = it.documents
-                    for (document in collection){
-                        val newsModel: PlantModel? = document.toObject(PlantModel::class.java)
-                        println("home : $newsModel")
-                        newsModel?.let { it1 -> list2.add(it1) }
-                        println("list setelah add : $list2")
-                    }
-                    list = list2
-                    trendingAdapter.setData(list)
-                    trendingAdapter.notifyDataSetChanged()
-                }
+        viewModel.getPlantByTrending(name).observe(this,{
+            if (it.isNotEmpty()){
+                trendingAdapter.setData(it)
+                trendingAdapter.notifyDataSetChanged()
             }
+        })
 
         binding.rvTrending.apply {
             layoutManager = LinearLayoutManager(this@TrendingActivity)

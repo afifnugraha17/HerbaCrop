@@ -11,16 +11,16 @@ import com.ateam.herbacrop.core.domain.model.PlantModel
 import com.ateam.herbacrop.databinding.FragmentSearchBinding
 import com.ateam.herbacrop.ui.adapter.RecyclerSearchAdapter
 import com.ateam.herbacrop.ui.view.activity.DetailActivity
+import com.ateam.herbacrop.ui.viewmodel.SearchViewModel
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
     private lateinit var searchAdapter: RecyclerSearchAdapter
-    private val db = Firebase.firestore
-    private val koleksi = db.collection("main_data")
-    private var list = mutableListOf<PlantModel>()
+    private val viewModel: SearchViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,21 +42,14 @@ class SearchFragment : Fragment() {
                 binding.homeEtSearch.error = "Tulis sesuatu!"
             }
 
-            koleksi.document("home").collection("library")
-                .orderBy("nama").startAt(search).endAt(search+'\uf8ff').get()
-                .addOnSuccessListener {
-                    var list2 = mutableListOf<PlantModel>()
-                    val collection: List<DocumentSnapshot> = it.documents
-                    for (document in collection){
-                        val newsModel: PlantModel? = document.toObject(PlantModel::class.java)
-                        println("hasil search : $newsModel")
-                        newsModel?.let { it1 -> list2.add(it1) }
-                    }
-                    list = list2
+            viewModel.getSearchList(search).observe(viewLifecycleOwner,{
+                if (it.isNotEmpty()){
+                    binding.message.visibility = View.GONE
+                    searchAdapter.setData(it)
+                    searchAdapter.notifyDataSetChanged()
                 }
-            binding.message.visibility = View.GONE
-            searchAdapter.setData(list)
-            searchAdapter.notifyDataSetChanged()
+            })
+
         }
 
         searchAdapter.setOnItemClickCallback(object: RecyclerSearchAdapter.OnItemClickCallback{
