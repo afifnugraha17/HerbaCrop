@@ -9,18 +9,40 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:name=".App"
+        android:icon="@drawable/herbacroplogo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/herbacroplogo"
         android:supportsRtl="true"
         android:theme="@style/Theme.HerbaCrop"
         tools:ignore="AllowBackup">
-        <activity android:name=".ui.activity.DetailActivity"/>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.ateam.herbacrop.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+
+        </provider>
+
+        <activity android:name=".camera.ResultActivity"/>
+        <activity android:name=".camera.PictureCheckActivity" />
+        <activity android:name=".ui.view.activity.LibraryListActivity" />
+        <activity android:name=".ui.view.activity.TrendingActivity" />
+        <activity android:name=".ui.view.activity.NewsDetailActivity" />
+        <activity android:name=".ui.view.activity.AboutActivity" />
+        <activity android:name=".ui.view.onboarding.screens.OnBoardingActivity" />
+        <activity android:name=".ui.view.activity.DetailActivity"
+            android:theme="@style/Theme.HerbaCrop.NoActionBar"/>
         <activity android:name=".camera.CameraScanActivity" />
         <activity
-            android:name=".ui.activity.SplashActivity"
+            android:name=".ui.view.activity.SplashActivity"
             android:theme="@style/Theme.HerbaCrop.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +50,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.HomeActivity" />
+        <activity android:name=".ui.view.activity.HomeActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

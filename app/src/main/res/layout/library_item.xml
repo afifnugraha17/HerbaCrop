@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/sp_bg"
     android:layout_height="wrap_content">
 
 
@@ -12,7 +13,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="20dp"
         android:layout_marginTop="12dp"
-        android:clickable="true"
         android:focusable="true"
         android:foreground="?selectableItemBackground"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,61 +21,34 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image_library"
+            android:id="@+id/image_library"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:paddingBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:layout_gravity="center|left"
             android:src="@drawable/jarak"
-            app:civ_border_color="#531414"
-            app:civ_border_width="1dp"
+            app:civ_border_color="#D71C1C18"
+            app:civ_border_width="3dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_library_title"
-            android:layout_width="wrap_content"
+            android:id="@+id/title_library"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="125dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="40dp"
             android:fontFamily="@font/quicksand_bold"
-            android:shadowColor = "#000"
-            android:shadowDx = "-2"
-            android:shadowDy = "-2"
-            android:shadowRadius = "1"
-
+            android:shadowColor="#000"
+            android:shadowDx="-2"
+            android:shadowDy="-2"
+            android:shadowRadius="1"
             android:text="@string/title"
-            android:textSize="18sp"
+            android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/profile_image"
             app:layout_constraintTop_toTopOf="@+id/profile_image" />
-
-        <TextView
-            android:id="@+id/tv_library_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="125dp"
-            android:layout_marginTop="50dp"
-            android:fontFamily="@font/quicksand"
-            android:text="@string/deskripsi"
-            app:layout_constraintBottom_toBottomOf="@+id/profile_image"
-            app:layout_constraintStart_toEndOf="@+id/profile_image"
-            app:layout_constraintTop_toBottomOf="@+id/title"
-            />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:layout_marginStart="300dp"
-            android:layout_marginTop="60dp"
-            app:fabCustomSize="28dp"
-            android:clickable="true"
-            android:padding="12dp"
-            app:srcCompat="@drawable/ic_favorite"
-            tools:ignore="ContentDescription"
-            android:focusable="true" />
 
     </androidx.cardview.widget.CardView>
 

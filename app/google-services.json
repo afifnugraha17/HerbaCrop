@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "519066142257",
+    "firebase_url": "https://inbound-byte-313314-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "inbound-byte-313314",
+    "storage_bucket": "inbound-byte-313314.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:519066142257:android:42e5fca8ebae5fa75e3710",
+        "android_client_info": {
+          "package_name": "com.ateam.herbacrop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "519066142257-lb0ap7mt82slo3qt63tqm9nfqmhqqb7s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ateam.herbacrop",
+            "certificate_hash": "9cf188708b73b89f277985533d211c220861fc18"
+          }
+        },
+        {
+          "client_id": "519066142257-kc4tcc324po1mlu04o5l1a76odddk3jk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjO8aut14se2ftM20WdaNA9fgLSi04ZPQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "519066142257-kc4tcc324po1mlu04o5l1a76odddk3jk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
